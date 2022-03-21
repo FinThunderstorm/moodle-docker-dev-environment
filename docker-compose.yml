@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+    moodle:
+        build:
+            context: ./
+            dockerfile: moodle.Dockerfile
+        working_dir: /var/www/html
+        image: moodle
+        container_name: moodle
+        ports:
+            - 8000:80
+        volumes:
+            - moodle:/var/www/html/
+            - ./digitala:/var/www/html/mod/digitala
+        depends_on:
+            - db
+        environment:
+            MOODLE_VERSION: "311"
+            MOODLE_DOCKER_DBTYPE: pgsql
+            MOODLE_DOCKER_DBNAME: moodle
+            MOODLE_DOCKER_DBUSER: moodle
+            MOODLE_DOCKER_DBPASS: "m@0dl3ing"
+            MOODLE_DOCKER_WEB_HOST: "localhost:8000"
+            MOODLE_DOCKER_BROWSER: chrome
+
+    db:
+        image: postgres:latest
+        container_name: moodle-db
+        volumes:
+            - postgres-data:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_USER: moodle
+            POSTGRES_PASSWORD: "m@0dl3ing"
+            POSTGRES_DB: moodle
+
+    selenium:
+        image: "selenium/standalone-chrome-debug:latest"
+        container_name: selenium
+        volumes:
+            - "moodle:/var/www/html"
+            - ./digitala:/var/www/html/mod/digitala
+            - /dev/shm:/dev/shm
+        ports:
+            - 5900:5900
+        environment:
+            "no_proxy": localhost
+
+    api:
+        build:
+            context: ./
+            dockerfile: api.Dockerfile
+        working_dir: /api
+        image: digitala-api
+        container_name: digitala-api
+        volumes:
+            - ./digitala/scripts/local-api/public:/api/public
+            - node_modules:/api/node_modules/
+        ports:
+          - 3000:3000
+
+volumes:
+    moodle:
+    postgres-data:
+    node_modules:
+
+networks:
+    default:
+        name: moodle
+        external: false
