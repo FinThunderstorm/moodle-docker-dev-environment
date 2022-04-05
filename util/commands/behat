@@ -1,2 +1,2 @@
 #!/bin/bash
-php ${MOODLE_LOCATION}/admin/tool/behat/cli/run.php --tags $1
+php ${MOODLE_LOCATION}/admin/tool/behat/cli/run.php --tags=@$1
