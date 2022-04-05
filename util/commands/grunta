@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ${MOODLE_LOCATION}/${PLUGIN_FOLDER}
+echo 'Grunting:'
+grunt amd

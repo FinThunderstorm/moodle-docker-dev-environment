@@ -1,0 +1,2 @@
+#!/bin/bash
+${MOODLE_LOCATION}/vendor/bin/phpunit --group $1

@@ -5,6 +5,8 @@ services:
         build:
             context: ./
             dockerfile: moodle.Dockerfile
+            args:
+                MOODLE_VERSION: master
         working_dir: /var/www/html
         image: moodle
         container_name: moodle
@@ -15,14 +17,17 @@ services:
             - ./digitala:/var/www/html/mod/digitala
         depends_on:
             - db
+
         environment:
-            MOODLE_VERSION: "311"
+            MOODLE_VERSION: master
+            MOODLE_LOCATION: /var/www/html
             MOODLE_DOCKER_DBTYPE: pgsql
             MOODLE_DOCKER_DBNAME: moodle
             MOODLE_DOCKER_DBUSER: moodle
             MOODLE_DOCKER_DBPASS: "m@0dl3ing"
             MOODLE_DOCKER_WEB_HOST: "localhost:8000"
             MOODLE_DOCKER_BROWSER: chrome
+            PLUGIN_FOLDER: mod/digitala
 
     db:
         image: postgres:latest

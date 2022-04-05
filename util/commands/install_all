@@ -1,0 +1,4 @@
+#!/bin/bash
+install_moodle
+init_behat
+init_phpunit

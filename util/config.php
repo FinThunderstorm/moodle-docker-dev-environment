@@ -93,4 +93,5 @@ if (getenv('MOODLE_DOCKER_PHPUNIT_EXTRAS')) {
     define('TEST_ENROL_LDAP_DOMAIN', 'ou=Users,dc=openstack,dc=org');
 }
 
+require_once(__DIR__ . '/moodle-browser-config/init.php');
 require_once(__DIR__ . '/lib/setup.php');

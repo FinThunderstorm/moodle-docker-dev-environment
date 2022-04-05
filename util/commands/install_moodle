@@ -1,0 +1,2 @@
+#!/bin/bash
+php ${MOODLE_LOCATION}/admin/cli/install_database.php --agree-license --fullname=DEVMoodle --shortname=devmoodle --adminuser=admin --adminpass=admin --adminemail=admin@admin.admin

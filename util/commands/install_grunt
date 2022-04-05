@@ -1,0 +1,5 @@
+#!/bin/bash
+mkdir node_modules
+chmod 777 node_modules
+npm install
+npm install -g grunt-cli
