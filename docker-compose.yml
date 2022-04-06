@@ -15,6 +15,7 @@ services:
         volumes:
             - moodle:/var/www/html/
             - ./digitala:/var/www/html/mod/digitala
+            - ./larppa:/var/www/html/local/larppa
         depends_on:
             - db
 

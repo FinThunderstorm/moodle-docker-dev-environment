@@ -18,6 +18,9 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
 RUN nvm install && nvm use
 
 RUN git clone https://github.com/andrewnicols/moodle-browser-config
+RUN git clone https://github.com/mudrd8mz/moodle-tool_pluginskel.git admin/tool/pluginskel
+RUN git clone https://github.com/moodlehq/moodle-local_codechecker.git local/codechecker
+RUN git clone https://github.com/moodlehq/moodle-local_moodlecheck.git local/moodlecheck
 
 # Edit basic Moodle Configuration file
 COPY util/config.php config.php
